@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--多个人同时开发时，可以导入别人的xml-->
+    <import resource="ApplicationContext1.xml"/>
+    <import resource="ApplicationContext2.xml"/>
+    <import resource="ApplicationContext3.xml"/>
+
+    <bean id="hello" class="com.yangq.pojo.Hello">
+        <property name="name" value="yangq"/>
+    </bean>
+    <!--下标赋值-->
+    <bean id="user1" class="com.yangq.pojo.User">
+        <constructor-arg index="0" value="yangq1"/>
+        <constructor-arg index="1" value="24"/>
+    </bean>
+    <!--类型赋值-->
+    <bean id="user2" class="com.yangq.pojo.User">
+        <constructor-arg type="java.lang.String" value="yangq2"/>
+        <constructor-arg type="int" value="24"/>
+    </bean>
+    <!--
+    id: bean的唯一标识符，也就是相当于我们学的对象名
+    class： bean对象的全限定名：包名 + 类型
+    name： 也是别名 而且name可以同时设置多个别名，可以用逗号 空格 分号隔开
+    -->
+    <!--变量名称赋值-->
+    <bean id="user3" class="com.yangq.pojo.User" name="user4">
+        <constructor-arg name="name" value="yangq3"/>
+        <constructor-arg name="age" value="24"/>
+    </bean>
+    <alias name="user3" alias="userAlice"/>
+</beans>

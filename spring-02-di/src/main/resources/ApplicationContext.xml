@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--p命名空间注入，可以直接注入属性的值：property-->
+    <bean id="p_test" class="com.yangq.Student" p:name="yang" p:address="DL"/>
+
+    <!--c命名空间注入，通过构造器注入：construct-args-->
+    <bean id="c_test" class="com.yangq.Address" c:address="DL"/>
+    <!--
+        new Address() —— 必须调用无参构造创建对象
+        再调用 setAddress("Dalian") 进行属性注入
+        -->
+    <bean id="address" class="com.yangq.Address">
+        <property name="address" value="Dalian"/>
+    </bean>
+
+    <bean id="student" class="com.yangq.Student">
+        <property name="name" value="yangq"/>
+        <property name="address" ref="address"/>
+        <property name="books">
+            <array>
+                <value>红楼梦</value>
+                <value>三国演义</value>
+                <value>水浒传</value>
+                <value>西游记</value>
+            </array>
+        </property>
+        <property name="hobbies">
+            <list>
+                <value>游戏</value>
+                <value>睡觉</value>
+                <value>编程</value>
+            </list>
+        </property>
+        <property name="card">
+            <map>
+                <entry key="身份证" value="1234567"/>
+                <entry key="银行卡" value="7654321"/>
+            </map>
+        </property>
+        <property name="games">
+            <set>
+                <value>lol</value>
+                <value>王者荣耀</value>
+            </set>
+        </property>
+        <property name="wife">
+            <null/>
+        </property>
+        <property name="info">
+            <props>
+                <prop key="driver">驱动</prop>
+                <prop key="name">root</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+    </bean>
+    <!--自动装配-->
+    <bean id="cat11" class="com.yangq.Cat"/>
+    <bean id="dog2121" class="com.yangq.Dog"/>
+
+    <bean id="people1" class="com.yangq.People" autowire="byType">
+        <property name="name" value="yangq"/>
+    </bean>
+    <bean id="people2" class="com.yangq.People" autowire="byName">
+        <property name="name" value="yangq"/>
+    </bean>
+
+</beans>
