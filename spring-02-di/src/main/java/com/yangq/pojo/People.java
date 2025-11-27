@@ -1,4 +1,6 @@
-package com.yangq;
+package com.yangq.pojo;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author hello28256
@@ -8,7 +10,9 @@ package com.yangq;
  */
 
 public class People {
+    @Autowired
     Dog dog;
+    @Autowired
     Cat cat;
     private String name;
 

@@ -3,23 +3,31 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-		https://www.springframework.org/schema/beans/spring-beans.xsd">
+	   https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
 
+
+    <!--开启注解支持-->
+    <context:annotation-config/>
+    <!--指定要扫描的包，这个包下的注解就会生效-->
+    <context:component-scan base-package="com.yangq"/>
     <!--p命名空间注入，可以直接注入属性的值：property-->
-    <bean id="p_test" class="com.yangq.Student" p:name="yang" p:address="DL"/>
+    <bean id="p_test" class="com.yangq.pojo.Student" p:name="yang" p:address="DL"/>
 
     <!--c命名空间注入，通过构造器注入：construct-args-->
-    <bean id="c_test" class="com.yangq.Address" c:address="DL"/>
+    <bean id="c_test" class="com.yangq.pojo.Address" c:address="DL"/>
     <!--
         new Address() —— 必须调用无参构造创建对象
         再调用 setAddress("Dalian") 进行属性注入
         -->
-    <bean id="address" class="com.yangq.Address">
+    <bean id="address" class="com.yangq.pojo.Address">
         <property name="address" value="Dalian"/>
     </bean>
 
-    <bean id="student" class="com.yangq.Student">
+    <bean id="student" class="com.yangq.pojo.Student">
         <property name="name" value="yangq"/>
         <property name="address" ref="address"/>
         <property name="books">
@@ -61,13 +69,17 @@
         </property>
     </bean>
     <!--自动装配-->
-    <bean id="cat11" class="com.yangq.Cat"/>
-    <bean id="dog2121" class="com.yangq.Dog"/>
+    <bean id="cat" class="com.yangq.pojo.Cat"/>
+    <bean id="dog" class="com.yangq.pojo.Dog"/>
 
-    <bean id="people1" class="com.yangq.People" autowire="byType">
+    <bean id="people1" class="com.yangq.pojo.People" autowire="byType">
         <property name="name" value="yangq"/>
     </bean>
-    <bean id="people2" class="com.yangq.People" autowire="byName">
+    <bean id="people2" class="com.yangq.pojo.People" autowire="byName">
+        <property name="name" value="yangq"/>
+    </bean>
+
+    <bean id="people3" class="com.yangq.pojo.People">
         <property name="name" value="yangq"/>
     </bean>
 

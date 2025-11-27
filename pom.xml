@@ -11,9 +11,7 @@
     <modules>
         <module>spring-01</module>
         <module>spring-02-di</module>
-        <module>spring-03-ioc</module>
-        <module>spring-04</module>
-        <module>spring-05</module>
+        <module>Spring-proxy</module>
     </modules>
 
     <properties>

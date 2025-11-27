@@ -1,4 +1,4 @@
-package com.yangq;
+package com.yangq.pojo;
 
 /**
  * @author hello28256
